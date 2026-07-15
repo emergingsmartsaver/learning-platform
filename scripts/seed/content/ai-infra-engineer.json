@@ -1,0 +1,823 @@
+{
+  "careerPath": {
+    "slug": "ai-infra-engineer",
+    "title": "AI Infrastructure Engineer",
+    "description": "Learn to design, deploy, and operate the infrastructure that powers AI systems in production.",
+    "icon": "server",
+    "order": 1,
+    "isPublished": true
+  },
+  "stages": [
+    {
+      "key": "stage-foundations",
+      "title": "Foundations",
+      "order": 1,
+      "description": "Core Linux, networking, and programming skills every infra engineer needs.",
+      "milestones": [
+        {
+          "key": "ms-linux-cli",
+          "title": "Linux & Command Line Essentials",
+          "order": 1,
+          "description": "Navigate, script, and manage processes on Linux systems.",
+          "skills": [
+            {
+              "title": "Shell scripting",
+              "description": "Write bash scripts using variables, loops, conditionals, and functions to automate repetitive server tasks."
+            },
+            {
+              "title": "File system & permissions",
+              "description": "Understand Linux file ownership, permission bits (rwx), and commands like chmod/chown to control access safely."
+            },
+            {
+              "title": "Process management",
+              "description": "Inspect, background, and kill processes; understand PIDs, signals, and how to keep long-running services alive."
+            }
+          ],
+          "quiz": {
+            "title": "Linux Fundamentals Quiz",
+            "passingScorePct": 80,
+            "questions": [
+              {
+                "type": "single",
+                "prompt": "Which command changes file permissions?",
+                "options": [
+                  "chmod",
+                  "chown",
+                  "chgrp",
+                  "chattr"
+                ],
+                "correctAnswer": "chmod"
+              },
+              {
+                "type": "single",
+                "prompt": "Which command lists running processes?",
+                "options": [
+                  "ps",
+                  "ls",
+                  "top",
+                  "Both ps and top"
+                ],
+                "correctAnswer": "Both ps and top"
+              },
+              {
+                "type": "single",
+                "prompt": "Which command changes file ownership?",
+                "options": [
+                  "chmod",
+                  "chown",
+                  "chgrp",
+                  "chattr"
+                ],
+                "correctAnswer": "chown"
+              },
+              {
+                "type": "single",
+                "prompt": "What does the command 'kill -9 <pid>' do?",
+                "options": [
+                  "Pauses the process",
+                  "Forcefully terminates the process",
+                  "Restarts the process",
+                  "Lists the process"
+                ],
+                "correctAnswer": "Forcefully terminates the process"
+              },
+              {
+                "type": "multi",
+                "prompt": "Which of these are valid ways to run a script in the background?",
+                "options": [
+                  "Append & to the command",
+                  "Use nohup",
+                  "Use ps aux",
+                  "Use Ctrl+Z then bg"
+                ],
+                "correctAnswer": [
+                  "Append & to the command",
+                  "Use nohup",
+                  "Use Ctrl+Z then bg"
+                ]
+              },
+              {
+                "type": "single",
+                "prompt": "Which permission value grants read, write, and execute to the owner only?",
+                "options": [
+                  "700",
+                  "644",
+                  "755",
+                  "400"
+                ],
+                "correctAnswer": "700"
+              },
+              {
+                "type": "text",
+                "prompt": "What shell command shows the current working directory? (3 letters)",
+                "correctAnswer": "pwd"
+              },
+              {
+                "type": "single",
+                "prompt": "What does a shebang line like #!/bin/bash do?",
+                "options": [
+                  "Comments out the file",
+                  "Specifies which interpreter runs the script",
+                  "Sets file permissions",
+                  "Imports a library"
+                ],
+                "correctAnswer": "Specifies which interpreter runs the script"
+              }
+            ]
+          },
+          "projects": [
+            {
+              "title": "Server Setup Script",
+              "description": "Write a bash script that provisions a fresh Ubuntu server with common dev tooling.",
+              "requirements": [
+                "Idempotent script",
+                "Installs git, docker, node",
+                "Configures a non-root user"
+              ],
+              "rubric": [
+                "Runs without errors on a clean VM",
+                "Safe to re-run",
+                "Documented in README"
+              ],
+              "requiresGithubLink": true
+            }
+          ]
+        },
+        {
+          "key": "ms-networking",
+          "title": "Networking Basics",
+          "order": 2,
+          "description": "Understand DNS, HTTP, TCP/IP, and how services talk to each other.",
+          "skills": [
+            {
+              "title": "DNS resolution",
+              "description": "Understand how domain names resolve to IP addresses, including A/CNAME records and how DNS lookups are cached."
+            },
+            {
+              "title": "HTTP/HTTPS",
+              "description": "Understand request/response cycles, status codes, headers, and how TLS secures HTTP traffic."
+            },
+            {
+              "title": "TCP/IP basics",
+              "description": "Understand how data moves across networks: IP addressing, ports, and the handshake behind reliable connections."
+            },
+            {
+              "title": "Load balancing concepts",
+              "description": "Understand how traffic gets distributed across multiple servers, and common strategies like round-robin and health checks."
+            }
+          ],
+          "quiz": {
+            "title": "Networking Basics Quiz",
+            "passingScorePct": 80,
+            "questions": [
+              {
+                "type": "single",
+                "prompt": "What port does HTTPS use by default?",
+                "options": [
+                  "80",
+                  "443",
+                  "22",
+                  "8080"
+                ],
+                "correctAnswer": "443"
+              },
+              {
+                "type": "single",
+                "prompt": "What port does HTTP use by default?",
+                "options": [
+                  "443",
+                  "21",
+                  "80",
+                  "8443"
+                ],
+                "correctAnswer": "80"
+              },
+              {
+                "type": "single",
+                "prompt": "Which DNS record type maps a domain name to an IPv4 address?",
+                "options": [
+                  "CNAME",
+                  "A",
+                  "MX",
+                  "TXT"
+                ],
+                "correctAnswer": "A"
+              },
+              {
+                "type": "multi",
+                "prompt": "Which of these are valid HTTP methods?",
+                "options": [
+                  "GET",
+                  "POST",
+                  "FETCH",
+                  "DELETE"
+                ],
+                "correctAnswer": [
+                  "GET",
+                  "POST",
+                  "DELETE"
+                ]
+              },
+              {
+                "type": "single",
+                "prompt": "What does TCP guarantee that UDP does not?",
+                "options": [
+                  "Lower latency",
+                  "Reliable, ordered delivery",
+                  "Smaller packet size",
+                  "Encryption"
+                ],
+                "correctAnswer": "Reliable, ordered delivery"
+              },
+              {
+                "type": "single",
+                "prompt": "What HTTP status code indicates a successful request?",
+                "options": [
+                  "404",
+                  "500",
+                  "200",
+                  "301"
+                ],
+                "correctAnswer": "200"
+              },
+              {
+                "type": "text",
+                "prompt": "What protocol secures HTTP traffic with encryption? (abbreviation)",
+                "correctAnswer": "TLS"
+              },
+              {
+                "type": "single",
+                "prompt": "What is the primary purpose of a load balancer?",
+                "options": [
+                  "Encrypt traffic",
+                  "Distribute traffic across multiple servers",
+                  "Cache DNS lookups",
+                  "Compress responses"
+                ],
+                "correctAnswer": "Distribute traffic across multiple servers"
+              }
+            ]
+          },
+          "projects": []
+        }
+      ]
+    },
+    {
+      "key": "stage-cloud-mlops",
+      "title": "Cloud & MLOps",
+      "order": 2,
+      "description": "Deploy and manage AI workloads on cloud infrastructure.",
+      "milestones": [
+        {
+          "key": "ms-containers",
+          "title": "Containers & Docker",
+          "order": 1,
+          "description": "Package and run applications with Docker.",
+          "skills": [
+            {
+              "title": "Dockerfile authoring",
+              "description": "Write Dockerfiles that build reproducible images: base images, layers, COPY/RUN instructions, and entrypoints."
+            },
+            {
+              "title": "Image optimization",
+              "description": "Reduce image size and build time using multi-stage builds, layer caching, and minimal base images."
+            },
+            {
+              "title": "Container networking",
+              "description": "Understand how containers communicate with each other and the host via bridge networks, ports, and DNS."
+            }
+          ],
+          "quiz": {
+            "title": "Docker Fundamentals Quiz",
+            "passingScorePct": 80,
+            "questions": [
+              {
+                "type": "single",
+                "prompt": "Which file defines how a Docker image is built?",
+                "options": [
+                  "Dockerfile",
+                  "docker-compose.yml",
+                  "Containerfile.json",
+                  "build.yaml"
+                ],
+                "correctAnswer": "Dockerfile"
+              },
+              {
+                "type": "single",
+                "prompt": "Which instruction in a Dockerfile copies files into the image?",
+                "options": [
+                  "ADD only",
+                  "COPY only",
+                  "Both COPY and ADD",
+                  "IMPORT"
+                ],
+                "correctAnswer": "Both COPY and ADD"
+              },
+              {
+                "type": "single",
+                "prompt": "What technique reduces final image size by separating build and runtime stages?",
+                "options": [
+                  "Layer caching",
+                  "Multi-stage builds",
+                  "Volume mounting",
+                  "Bind mounts"
+                ],
+                "correctAnswer": "Multi-stage builds"
+              },
+              {
+                "type": "multi",
+                "prompt": "Which of these help reduce Docker image size?",
+                "options": [
+                  "Using a slim/alpine base image",
+                  "Combining RUN commands",
+                  "Installing unnecessary debug tools",
+                  "Removing package manager caches after install"
+                ],
+                "correctAnswer": [
+                  "Using a slim/alpine base image",
+                  "Combining RUN commands",
+                  "Removing package manager caches after install"
+                ]
+              },
+              {
+                "type": "single",
+                "prompt": "What command builds an image from a Dockerfile in the current directory?",
+                "options": [
+                  "docker run .",
+                  "docker build .",
+                  "docker create .",
+                  "docker image ."
+                ],
+                "correctAnswer": "docker build ."
+              },
+              {
+                "type": "text",
+                "prompt": "What command lists all running containers? (2 words)",
+                "correctAnswer": "docker ps"
+              },
+              {
+                "type": "single",
+                "prompt": "What is the purpose of a .dockerignore file?",
+                "options": [
+                  "Set environment variables",
+                  "Exclude files from the build context",
+                  "Define container networking",
+                  "Schedule container restarts"
+                ],
+                "correctAnswer": "Exclude files from the build context"
+              }
+            ]
+          },
+          "projects": [
+            {
+              "title": "Containerize a Model Serving API",
+              "description": "Package a simple ML inference API into a production-ready Docker image.",
+              "requirements": [
+                "Multi-stage build",
+                "Under 500MB image size",
+                "Health check endpoint"
+              ],
+              "rubric": [
+                "Image builds successfully",
+                "Runs and serves requests",
+                "README documents usage"
+              ],
+              "requiresGithubLink": true
+            }
+          ]
+        },
+        {
+          "key": "ms-orchestration",
+          "title": "Orchestration with Kubernetes",
+          "order": 2,
+          "description": "Deploy and scale containerized workloads with Kubernetes.",
+          "skills": [
+            {
+              "title": "Pods & Deployments",
+              "description": "Understand Kubernetes' smallest deployable unit (Pod) and how Deployments manage replicas and rollouts."
+            },
+            {
+              "title": "Services & Ingress",
+              "description": "Expose Pods internally (Services) and externally (Ingress) with stable networking and routing rules."
+            },
+            {
+              "title": "Autoscaling",
+              "description": "Configure Horizontal Pod Autoscalers to automatically adjust replica count based on load."
+            },
+            {
+              "title": "ConfigMaps & Secrets",
+              "description": "Externalize configuration and sensitive values from container images using Kubernetes-native objects."
+            }
+          ],
+          "quiz": {
+            "title": "Kubernetes Basics Quiz",
+            "passingScorePct": 80,
+            "questions": [
+              {
+                "type": "single",
+                "prompt": "What Kubernetes object exposes a set of Pods as a network service?",
+                "options": [
+                  "Deployment",
+                  "Service",
+                  "ConfigMap",
+                  "Namespace"
+                ],
+                "correctAnswer": "Service"
+              },
+              {
+                "type": "single",
+                "prompt": "What is the smallest deployable unit in Kubernetes?",
+                "options": [
+                  "Container",
+                  "Pod",
+                  "Node",
+                  "Cluster"
+                ],
+                "correctAnswer": "Pod"
+              },
+              {
+                "type": "single",
+                "prompt": "Which object manages rolling updates and replica counts for Pods?",
+                "options": [
+                  "Service",
+                  "Deployment",
+                  "Ingress",
+                  "Secret"
+                ],
+                "correctAnswer": "Deployment"
+              },
+              {
+                "type": "multi",
+                "prompt": "Which of these are used to store configuration or sensitive data in Kubernetes?",
+                "options": [
+                  "ConfigMap",
+                  "Secret",
+                  "Deployment",
+                  "Ingress"
+                ],
+                "correctAnswer": [
+                  "ConfigMap",
+                  "Secret"
+                ]
+              },
+              {
+                "type": "single",
+                "prompt": "What does a Horizontal Pod Autoscaler adjust?",
+                "options": [
+                  "Node CPU speed",
+                  "Number of Pod replicas",
+                  "Container image version",
+                  "Cluster region"
+                ],
+                "correctAnswer": "Number of Pod replicas"
+              },
+              {
+                "type": "single",
+                "prompt": "What Kubernetes object manages external HTTP routing to Services?",
+                "options": [
+                  "Ingress",
+                  "ConfigMap",
+                  "DaemonSet",
+                  "Job"
+                ],
+                "correctAnswer": "Ingress"
+              },
+              {
+                "type": "text",
+                "prompt": "What CLI tool is used to interact with a Kubernetes cluster? (abbreviation)",
+                "correctAnswer": "kubectl"
+              }
+            ]
+          },
+          "projects": []
+        },
+        {
+          "key": "ms-ci-cd",
+          "title": "CI/CD for ML Systems",
+          "order": 3,
+          "description": "Automate testing, building, and deployment of AI infrastructure.",
+          "skills": [
+            {
+              "title": "GitHub Actions",
+              "description": "Write workflow YAML to automate builds, tests, and deployments triggered by pushes or pull requests."
+            },
+            {
+              "title": "Automated testing",
+              "description": "Integrate test suites into a pipeline so code changes are validated automatically before merge."
+            },
+            {
+              "title": "Deployment pipelines",
+              "description": "Chain build, test, and deploy stages together so a merge to main safely ships to production."
+            }
+          ],
+          "quiz": {
+            "title": "CI/CD Quiz",
+            "passingScorePct": 80,
+            "questions": [
+              {
+                "type": "single",
+                "prompt": "What is the primary purpose of a CI pipeline?",
+                "options": [
+                  "Automatically test and validate code changes",
+                  "Manually deploy to production",
+                  "Write documentation",
+                  "Manage cloud billing"
+                ],
+                "correctAnswer": "Automatically test and validate code changes"
+              },
+              {
+                "type": "single",
+                "prompt": "What does CD typically stand for in CI/CD?",
+                "options": [
+                  "Code Delivery",
+                  "Continuous Deployment/Delivery",
+                  "Container Deployment",
+                  "Change Detection"
+                ],
+                "correctAnswer": "Continuous Deployment/Delivery"
+              },
+              {
+                "type": "multi",
+                "prompt": "Which of these are common stages in a CI/CD pipeline?",
+                "options": [
+                  "Lint",
+                  "Test",
+                  "Build",
+                  "Manually SSH into prod"
+                ],
+                "correctAnswer": [
+                  "Lint",
+                  "Test",
+                  "Build"
+                ]
+              },
+              {
+                "type": "single",
+                "prompt": "What is a rollback strategy used for?",
+                "options": [
+                  "Speeding up builds",
+                  "Reverting to a previous working version after a bad deploy",
+                  "Compressing Docker images",
+                  "Load testing"
+                ],
+                "correctAnswer": "Reverting to a previous working version after a bad deploy"
+              },
+              {
+                "type": "single",
+                "prompt": "In GitHub Actions, what file defines a workflow?",
+                "options": [
+                  "A .yml file under .github/workflows",
+                  "A Dockerfile",
+                  "A package.json script",
+                  "A .env file"
+                ],
+                "correctAnswer": "A .yml file under .github/workflows"
+              },
+              {
+                "type": "single",
+                "prompt": "What triggers a typical CI run on GitHub Actions?",
+                "options": [
+                  "Only manual button clicks",
+                  "Push or pull request events",
+                  "Server reboots",
+                  "DNS changes"
+                ],
+                "correctAnswer": "Push or pull request events"
+              },
+              {
+                "type": "text",
+                "prompt": "What term describes automatically deploying every change that passes tests, with no manual approval step?",
+                "correctAnswer": "continuous deployment"
+              }
+            ]
+          },
+          "projects": [
+            {
+              "title": "End-to-End Deployment Pipeline",
+              "description": "Build a CI/CD pipeline that tests, builds, and deploys a containerized service on push to main.",
+              "requirements": [
+                "Automated tests run on PR",
+                "Auto-deploy on merge to main",
+                "Rollback strategy documented"
+              ],
+              "rubric": [
+                "Pipeline runs successfully",
+                "Deploy is automated end-to-end",
+                "Documented clearly"
+              ],
+              "requiresGithubLink": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "stage-scaling-observability",
+      "title": "Scaling & Observability",
+      "order": 3,
+      "description": "Monitor, scale, and harden AI infrastructure for production reliability.",
+      "milestones": [
+        {
+          "key": "ms-monitoring",
+          "title": "Monitoring & Observability",
+          "order": 1,
+          "description": "Set up metrics, logging, and alerting for production systems.",
+          "skills": [
+            {
+              "title": "Metrics collection",
+              "description": "Instrument services to emit metrics (latency, error rate, throughput) and scrape them with tools like Prometheus."
+            },
+            {
+              "title": "Structured logging",
+              "description": "Emit logs as structured JSON with consistent fields so they're searchable and machine-parseable at scale."
+            },
+            {
+              "title": "Alerting & on-call basics",
+              "description": "Set thresholds that trigger alerts, and understand on-call fundamentals like escalation and runbooks."
+            }
+          ],
+          "quiz": {
+            "title": "Observability Quiz",
+            "passingScorePct": 80,
+            "questions": [
+              {
+                "type": "single",
+                "prompt": "Which of these is a common open-source metrics & alerting tool?",
+                "options": [
+                  "Prometheus",
+                  "Photoshop",
+                  "Terraform",
+                  "npm"
+                ],
+                "correctAnswer": "Prometheus"
+              },
+              {
+                "type": "single",
+                "prompt": "What is structured logging?",
+                "options": [
+                  "Logs written in plain free-form text",
+                  "Logs emitted in a consistent, machine-parseable format like JSON",
+                  "Logs stored only in memory",
+                  "Logs sent via email"
+                ],
+                "correctAnswer": "Logs emitted in a consistent, machine-parseable format like JSON"
+              },
+              {
+                "type": "multi",
+                "prompt": "Which of these are considered 'golden signals' for monitoring a service?",
+                "options": [
+                  "Latency",
+                  "Traffic",
+                  "Errors",
+                  "Font size"
+                ],
+                "correctAnswer": [
+                  "Latency",
+                  "Traffic",
+                  "Errors"
+                ]
+              },
+              {
+                "type": "single",
+                "prompt": "What is the purpose of an alerting threshold?",
+                "options": [
+                  "To trigger a notification when a metric crosses a defined limit",
+                  "To slow down request processing",
+                  "To compress log files",
+                  "To restart a service automatically"
+                ],
+                "correctAnswer": "To trigger a notification when a metric crosses a defined limit"
+              },
+              {
+                "type": "single",
+                "prompt": "What is a runbook used for during an incident?",
+                "options": [
+                  "Tracking billing",
+                  "A documented set of steps to diagnose and resolve a known issue",
+                  "Writing new features",
+                  "Compiling code"
+                ],
+                "correctAnswer": "A documented set of steps to diagnose and resolve a known issue"
+              },
+              {
+                "type": "text",
+                "prompt": "What popular visualization tool is commonly paired with Prometheus for dashboards?",
+                "correctAnswer": "Grafana"
+              }
+            ]
+          },
+          "projects": []
+        },
+        {
+          "key": "ms-cost-scaling",
+          "title": "Cost Management & Scaling",
+          "order": 2,
+          "description": "Balance performance, reliability, and cost when scaling AI infrastructure.",
+          "skills": [
+            {
+              "title": "Autoscaling strategies",
+              "description": "Compare horizontal vs vertical scaling and choose strategies based on cost and traffic patterns."
+            },
+            {
+              "title": "Cost monitoring",
+              "description": "Track cloud spend against usage to catch runaway costs before they become a problem."
+            },
+            {
+              "title": "Capacity planning",
+              "description": "Forecast future resource needs based on growth trends to avoid both over- and under-provisioning."
+            }
+          ],
+          "quiz": {
+            "title": "Scaling & Cost Quiz",
+            "passingScorePct": 80,
+            "questions": [
+              {
+                "type": "single",
+                "prompt": "What is horizontal scaling?",
+                "options": [
+                  "Adding more machines/instances",
+                  "Upgrading a single machine's specs",
+                  "Reducing the number of servers",
+                  "Changing the database engine"
+                ],
+                "correctAnswer": "Adding more machines/instances"
+              },
+              {
+                "type": "single",
+                "prompt": "What is vertical scaling?",
+                "options": [
+                  "Adding more machines",
+                  "Increasing the resources (CPU/RAM) of an existing machine",
+                  "Removing unused services",
+                  "Adding more DNS records"
+                ],
+                "correctAnswer": "Increasing the resources (CPU/RAM) of an existing machine"
+              },
+              {
+                "type": "multi",
+                "prompt": "Which of these help control cloud costs?",
+                "options": [
+                  "Autoscaling down during low traffic",
+                  "Reserved/committed-use pricing",
+                  "Leaving unused resources running",
+                  "Right-sizing instances"
+                ],
+                "correctAnswer": [
+                  "Autoscaling down during low traffic",
+                  "Reserved/committed-use pricing",
+                  "Right-sizing instances"
+                ]
+              },
+              {
+                "type": "single",
+                "prompt": "What is capacity planning primarily concerned with?",
+                "options": [
+                  "Forecasting future resource needs based on growth trends",
+                  "Writing unit tests",
+                  "Designing UI components",
+                  "Managing DNS records"
+                ],
+                "correctAnswer": "Forecasting future resource needs based on growth trends"
+              },
+              {
+                "type": "single",
+                "prompt": "Which pricing model typically costs less in exchange for committing to usage over time?",
+                "options": [
+                  "On-demand",
+                  "Spot/preemptible only",
+                  "Reserved/committed-use",
+                  "Pay-per-request only"
+                ],
+                "correctAnswer": "Reserved/committed-use"
+              },
+              {
+                "type": "text",
+                "prompt": "What term describes automatically scaling resources down to zero when idle?",
+                "correctAnswer": "scale to zero"
+              }
+            ]
+          },
+          "projects": [
+            {
+              "title": "Capstone: Production-Ready AI Service",
+              "description": "Combine containers, orchestration, CI/CD, and monitoring into one deployed, observable AI inference service.",
+              "requirements": [
+                "Deployed on Kubernetes",
+                "CI/CD pipeline in place",
+                "Metrics dashboard and alerting configured",
+                "Cost/scaling notes documented"
+              ],
+              "rubric": [
+                "Service is live and functional",
+                "Monitoring shows real metrics",
+                "Pipeline auto-deploys changes",
+                "README explains architecture and tradeoffs"
+              ],
+              "requiresGithubLink": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
