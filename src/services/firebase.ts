@@ -17,3 +17,16 @@ export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 export const googleProvider = new GoogleAuthProvider();
+
+// Diagnostic only — Vite bakes these values in at BUILD time, so if env
+// vars were added/changed in Cloudflare after the first build, the live
+// bundle can still be running with stale or blank config. Check this log
+// in prod to confirm projectId matches your actual Firebase project.
+if (!firebaseConfig.projectId) {
+  console.error(
+    'Firebase projectId is missing — env vars were likely not present at build time. ' +
+      'Add them in Cloudflare Pages → Settings → Environment variables (Production scope) and trigger a fresh deploy.'
+  );
+} else {
+  console.info('[Firebase] Connected project:', firebaseConfig.projectId);
+}
