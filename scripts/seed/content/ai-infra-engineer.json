@@ -22,15 +22,33 @@
           "skills": [
             {
               "title": "Shell scripting",
-              "description": "Write bash scripts using variables, loops, conditionals, and functions to automate repetitive server tasks."
+              "description": "Write bash scripts using variables, loops, conditionals, and functions to automate repetitive server tasks.",
+              "resources": [
+                {
+                  "title": "Bash Reference Manual (GNU)",
+                  "url": "https://www.gnu.org/software/bash/manual/bash.html"
+                }
+              ]
             },
             {
               "title": "File system & permissions",
-              "description": "Understand Linux file ownership, permission bits (rwx), and commands like chmod/chown to control access safely."
+              "description": "Understand Linux file ownership, permission bits (rwx), and commands like chmod/chown to control access safely.",
+              "resources": [
+                {
+                  "title": "Linux Permissions Basics (DigitalOcean)",
+                  "url": "https://www.digitalocean.com/community/tutorials/linux-permissions-basics-and-how-to-use-umask-on-linux"
+                }
+              ]
             },
             {
               "title": "Process management",
-              "description": "Inspect, background, and kill processes; understand PIDs, signals, and how to keep long-running services alive."
+              "description": "Inspect, background, and kill processes; understand PIDs, signals, and how to keep long-running services alive.",
+              "resources": [
+                {
+                  "title": "Process Management in Linux (DigitalOcean)",
+                  "url": "https://www.digitalocean.com/community/tutorials/process-management-in-linux"
+                }
+              ]
             }
           ],
           "quiz": {
@@ -151,19 +169,43 @@
           "skills": [
             {
               "title": "DNS resolution",
-              "description": "Understand how domain names resolve to IP addresses, including A/CNAME records and how DNS lookups are cached."
+              "description": "Understand how domain names resolve to IP addresses, including A/CNAME records and how DNS lookups are cached.",
+              "resources": [
+                {
+                  "title": "What is DNS? (Cloudflare Learning)",
+                  "url": "https://www.cloudflare.com/learning/dns/what-is-dns/"
+                }
+              ]
             },
             {
               "title": "HTTP/HTTPS",
-              "description": "Understand request/response cycles, status codes, headers, and how TLS secures HTTP traffic."
+              "description": "Understand request/response cycles, status codes, headers, and how TLS secures HTTP traffic.",
+              "resources": [
+                {
+                  "title": "HTTP Overview (MDN)",
+                  "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview"
+                }
+              ]
             },
             {
               "title": "TCP/IP basics",
-              "description": "Understand how data moves across networks: IP addressing, ports, and the handshake behind reliable connections."
+              "description": "Understand how data moves across networks: IP addressing, ports, and the handshake behind reliable connections.",
+              "resources": [
+                {
+                  "title": "What is TCP/IP? (Cloudflare Learning)",
+                  "url": "https://www.cloudflare.com/learning/ddos/glossary/tcp-ip/"
+                }
+              ]
             },
             {
               "title": "Load balancing concepts",
-              "description": "Understand how traffic gets distributed across multiple servers, and common strategies like round-robin and health checks."
+              "description": "Understand how traffic gets distributed across multiple servers, and common strategies like round-robin and health checks.",
+              "resources": [
+                {
+                  "title": "What Is Load Balancing? (Cloudflare Learning)",
+                  "url": "https://www.cloudflare.com/learning/performance/what-is-load-balancing/"
+                }
+              ]
             }
           ],
           "quiz": {
@@ -276,15 +318,33 @@
           "skills": [
             {
               "title": "Dockerfile authoring",
-              "description": "Write Dockerfiles that build reproducible images: base images, layers, COPY/RUN instructions, and entrypoints."
+              "description": "Write Dockerfiles that build reproducible images: base images, layers, COPY/RUN instructions, and entrypoints.",
+              "resources": [
+                {
+                  "title": "Dockerfile Reference (Docker Docs)",
+                  "url": "https://docs.docker.com/reference/dockerfile/"
+                }
+              ]
             },
             {
               "title": "Image optimization",
-              "description": "Reduce image size and build time using multi-stage builds, layer caching, and minimal base images."
+              "description": "Reduce image size and build time using multi-stage builds, layer caching, and minimal base images.",
+              "resources": [
+                {
+                  "title": "Docker Build Best Practices",
+                  "url": "https://docs.docker.com/build/building/best-practices/"
+                }
+              ]
             },
             {
               "title": "Container networking",
-              "description": "Understand how containers communicate with each other and the host via bridge networks, ports, and DNS."
+              "description": "Understand how containers communicate with each other and the host via bridge networks, ports, and DNS.",
+              "resources": [
+                {
+                  "title": "Docker Networking Overview",
+                  "url": "https://docs.docker.com/engine/network/"
+                }
+              ]
             }
           ],
           "quiz": {
@@ -394,19 +454,43 @@
           "skills": [
             {
               "title": "Pods & Deployments",
-              "description": "Understand Kubernetes' smallest deployable unit (Pod) and how Deployments manage replicas and rollouts."
+              "description": "Understand Kubernetes' smallest deployable unit (Pod) and how Deployments manage replicas and rollouts.",
+              "resources": [
+                {
+                  "title": "Kubernetes Pods (K8s Docs)",
+                  "url": "https://kubernetes.io/docs/concepts/workloads/pods/"
+                }
+              ]
             },
             {
               "title": "Services & Ingress",
-              "description": "Expose Pods internally (Services) and externally (Ingress) with stable networking and routing rules."
+              "description": "Expose Pods internally (Services) and externally (Ingress) with stable networking and routing rules.",
+              "resources": [
+                {
+                  "title": "Kubernetes Service (K8s Docs)",
+                  "url": "https://kubernetes.io/docs/concepts/services-networking/service/"
+                }
+              ]
             },
             {
               "title": "Autoscaling",
-              "description": "Configure Horizontal Pod Autoscalers to automatically adjust replica count based on load."
+              "description": "Configure Horizontal Pod Autoscalers to automatically adjust replica count based on load.",
+              "resources": [
+                {
+                  "title": "Horizontal Pod Autoscaling (K8s Docs)",
+                  "url": "https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/"
+                }
+              ]
             },
             {
               "title": "ConfigMaps & Secrets",
-              "description": "Externalize configuration and sensitive values from container images using Kubernetes-native objects."
+              "description": "Externalize configuration and sensitive values from container images using Kubernetes-native objects.",
+              "resources": [
+                {
+                  "title": "ConfigMaps (K8s Docs)",
+                  "url": "https://kubernetes.io/docs/concepts/configuration/configmap/"
+                }
+              ]
             }
           ],
           "quiz": {
@@ -499,15 +583,33 @@
           "skills": [
             {
               "title": "GitHub Actions",
-              "description": "Write workflow YAML to automate builds, tests, and deployments triggered by pushes or pull requests."
+              "description": "Write workflow YAML to automate builds, tests, and deployments triggered by pushes or pull requests.",
+              "resources": [
+                {
+                  "title": "Writing Workflows (GitHub Docs)",
+                  "url": "https://docs.github.com/en/actions/writing-workflows"
+                }
+              ]
             },
             {
               "title": "Automated testing",
-              "description": "Integrate test suites into a pipeline so code changes are validated automatically before merge."
+              "description": "Integrate test suites into a pipeline so code changes are validated automatically before merge.",
+              "resources": [
+                {
+                  "title": "Building and Testing (GitHub Docs)",
+                  "url": "https://docs.github.com/en/actions/automating-builds-and-tests"
+                }
+              ]
             },
             {
               "title": "Deployment pipelines",
-              "description": "Chain build, test, and deploy stages together so a merge to main safely ships to production."
+              "description": "Chain build, test, and deploy stages together so a merge to main safely ships to production.",
+              "resources": [
+                {
+                  "title": "Deployment with GitHub Actions",
+                  "url": "https://docs.github.com/en/actions/deployment"
+                }
+              ]
             }
           ],
           "quiz": {
@@ -625,15 +727,33 @@
           "skills": [
             {
               "title": "Metrics collection",
-              "description": "Instrument services to emit metrics (latency, error rate, throughput) and scrape them with tools like Prometheus."
+              "description": "Instrument services to emit metrics (latency, error rate, throughput) and scrape them with tools like Prometheus.",
+              "resources": [
+                {
+                  "title": "Prometheus Overview (Prometheus Docs)",
+                  "url": "https://prometheus.io/docs/introduction/overview/"
+                }
+              ]
             },
             {
               "title": "Structured logging",
-              "description": "Emit logs as structured JSON with consistent fields so they're searchable and machine-parseable at scale."
+              "description": "Emit logs as structured JSON with consistent fields so they're searchable and machine-parseable at scale.",
+              "resources": [
+                {
+                  "title": "Grafana Loki Docs",
+                  "url": "https://grafana.com/docs/loki/latest/"
+                }
+              ]
             },
             {
               "title": "Alerting & on-call basics",
-              "description": "Set thresholds that trigger alerts, and understand on-call fundamentals like escalation and runbooks."
+              "description": "Set thresholds that trigger alerts, and understand on-call fundamentals like escalation and runbooks.",
+              "resources": [
+                {
+                  "title": "Prometheus Alerting Overview",
+                  "url": "https://prometheus.io/docs/alerting/latest/overview/"
+                }
+              ]
             }
           ],
           "quiz": {
@@ -716,15 +836,33 @@
           "skills": [
             {
               "title": "Autoscaling strategies",
-              "description": "Compare horizontal vs vertical scaling and choose strategies based on cost and traffic patterns."
+              "description": "Compare horizontal vs vertical scaling and choose strategies based on cost and traffic patterns.",
+              "resources": [
+                {
+                  "title": "What is Amazon EC2 Auto Scaling?",
+                  "url": "https://docs.aws.amazon.com/autoscaling/ec2/userguide/what-is-amazon-ec2-auto-scaling.html"
+                }
+              ]
             },
             {
               "title": "Cost monitoring",
-              "description": "Track cloud spend against usage to catch runaway costs before they become a problem."
+              "description": "Track cloud spend against usage to catch runaway costs before they become a problem.",
+              "resources": [
+                {
+                  "title": "AWS Cost Management Docs",
+                  "url": "https://docs.aws.amazon.com/cost-management/"
+                }
+              ]
             },
             {
               "title": "Capacity planning",
-              "description": "Forecast future resource needs based on growth trends to avoid both over- and under-provisioning."
+              "description": "Forecast future resource needs based on growth trends to avoid both over- and under-provisioning.",
+              "resources": [
+                {
+                  "title": "Google SRE Book (free online)",
+                  "url": "https://sre.google/sre-book/table-of-contents/"
+                }
+              ]
             }
           ],
           "quiz": {

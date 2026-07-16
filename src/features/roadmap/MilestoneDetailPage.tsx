@@ -127,6 +127,21 @@ export function MilestoneDetailPage() {
               {skill.description && (
                 <p className="mt-0.5 text-sm text-slate-600">{skill.description}</p>
               )}
+              {skill.resources && skill.resources.length > 0 && (
+                <div className="mt-2 flex flex-wrap gap-3">
+                  {skill.resources.map((r) => (
+                    <a
+                      key={r.url}
+                      href={r.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs font-medium text-blue-600 hover:underline"
+                    >
+                      📖 {r.title} ↗
+                    </a>
+                  ))}
+                </div>
+              )}
             </li>
           ))}
         </ul>

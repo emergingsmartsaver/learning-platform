@@ -31,11 +31,17 @@ export interface Milestone {
   projectIds: string[];
 }
 
+export interface SkillResource {
+  title: string;
+  url: string;
+}
+
 export interface Skill {
   id: string;
   title: string;
   description: string;
   careerPathId: string;
+  resources?: SkillResource[];
 }
 
 export type QuestionType = 'single' | 'multi' | 'text';

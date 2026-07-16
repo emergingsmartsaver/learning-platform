@@ -51,9 +51,15 @@ interface ContentProject {
   requiresGithubLink: boolean;
 }
 
+interface ContentResource {
+  title: string;
+  url: string;
+}
+
 interface ContentSkill {
   title: string;
   description: string;
+  resources?: ContentResource[];
 }
 
 interface ContentMilestone {
@@ -126,6 +132,7 @@ async function seed() {
           title: skill.title,
           description: skill.description,
           careerPathId,
+          resources: skill.resources ?? [],
         });
       }
 
