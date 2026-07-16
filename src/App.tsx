@@ -9,17 +9,19 @@ import { DashboardPage } from './features/dashboard/DashboardPage';
 function AppShell() {
   return (
     <div className="min-h-screen bg-slate-50">
-      <header className="flex items-center justify-between border-b border-slate-200 bg-white px-6 py-4">
-        <div className="flex items-center gap-6">
-          <Link to="/" className="text-lg font-semibold text-slate-900">
-            Learning Platform
-          </Link>
-          <nav className="flex gap-4 text-sm text-slate-600">
-            <Link to="/dashboard" className="hover:text-slate-900">Dashboard</Link>
-            <Link to="/roadmap" className="hover:text-slate-900">Roadmap</Link>
-          </nav>
+      <header className="border-b-2 border-cyan-400 bg-gradient-to-r from-indigo-600 to-violet-700 px-6 py-4 shadow-sm">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-6">
+            <Link to="/" className="text-lg font-semibold tracking-tight text-white">
+              Learning Platform
+            </Link>
+            <nav className="flex gap-4 text-sm text-indigo-100">
+              <Link to="/dashboard" className="hover:text-white">Dashboard</Link>
+              <Link to="/roadmap" className="hover:text-white">Roadmap</Link>
+            </nav>
+          </div>
+          <LoginButton />
         </div>
-        <LoginButton />
       </header>
       <main className="p-6">
         <ProtectedRoute>

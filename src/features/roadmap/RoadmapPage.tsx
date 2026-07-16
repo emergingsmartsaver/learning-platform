@@ -83,19 +83,19 @@ export function RoadmapPage() {
   const completedIds = new Set(progress?.completedMilestoneIds ?? []);
 
   return (
-    <div className="mx-auto max-w-3xl">
+    <div className="mx-auto max-w-5xl">
       <h2 className="text-2xl font-bold text-slate-900">{careerPath?.title}</h2>
       <p className="mt-1 text-slate-600">{careerPath?.description}</p>
 
       {progress && (
-        <div className="mt-4">
+        <div className="mt-4 max-w-2xl">
           <div className="flex items-center justify-between text-sm text-slate-600">
             <span>Progress</span>
             <span>{progress.percentComplete}%</span>
           </div>
           <div className="mt-1 h-2 w-full overflow-hidden rounded-full bg-slate-200">
             <div
-              className="h-full bg-slate-900 transition-all"
+              className="h-full bg-gradient-to-r from-indigo-500 to-cyan-500 transition-all"
               style={{ width: `${progress.percentComplete}%` }}
             />
           </div>
@@ -108,14 +108,14 @@ export function RoadmapPage() {
             <h3 className="text-lg font-semibold text-slate-900">{stage.title}</h3>
             <p className="text-sm text-slate-500">{stage.description}</p>
 
-            <ol className="mt-3 space-y-2">
+            <ol className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2">
               {stage.milestones.map((milestone) => {
                 const isComplete = completedIds.has(milestone.id);
                 return (
                   <li key={milestone.id}>
                     <Link
                       to={`/roadmap/milestones/${milestone.id}`}
-                      className="flex items-start gap-3 rounded-md border border-slate-200 bg-white px-4 py-3 hover:border-slate-300 hover:shadow-sm"
+                      className="flex h-full items-start gap-3 rounded-md border border-slate-200 bg-white px-4 py-3 hover:border-indigo-300 hover:shadow-sm"
                     >
                       <span
                         className={`mt-1 flex h-4 w-4 shrink-0 items-center justify-center rounded-full text-[10px] ${
@@ -131,7 +131,7 @@ export function RoadmapPage() {
                         </span>
                         <span className="block text-sm text-slate-500">{milestone.description}</span>
                         {!isComplete && (
-                          <span className="mt-1 inline-block text-xs font-medium text-slate-500">
+                          <span className="mt-1 inline-block text-xs font-medium text-indigo-600">
                             Pass the quiz to complete →
                           </span>
                         )}

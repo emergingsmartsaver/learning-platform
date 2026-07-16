@@ -105,7 +105,7 @@ export function MilestoneDetailPage() {
   if (!milestone) return <p className="text-red-600">Milestone not found.</p>;
 
   return (
-    <div className="mx-auto max-w-2xl">
+    <div className="mx-auto max-w-3xl">
       <Link to="/roadmap" className="text-sm text-slate-500 hover:underline">
         ← Back to roadmap
       </Link>
@@ -167,7 +167,7 @@ export function MilestoneDetailPage() {
               </p>
               <button
                 onClick={() => setQuizStarted(true)}
-                className="mt-3 rounded-md bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-800"
+                className="mt-3 rounded-md bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700"
               >
                 Start Quiz
               </button>
@@ -207,7 +207,7 @@ export function MilestoneDetailPage() {
             {nextMilestone ? (
               <Link
                 to={`/roadmap/milestones/${nextMilestone.id}`}
-                className="rounded-md bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-800"
+                className="rounded-md bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700"
               >
                 Next: {nextMilestone.title} →
               </Link>

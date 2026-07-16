@@ -12,8 +12,10 @@ export function ProtectedRoute({ children }: { children: ReactNode }) {
   if (!user) {
     return (
       <div className="flex h-screen flex-col items-center justify-center gap-4">
-        <p className="text-slate-600">Sign in to continue</p>
-        <LoginButton />
+        <div className="flex flex-col items-center gap-4 rounded-xl bg-gradient-to-br from-indigo-600 to-violet-700 px-10 py-8 shadow-md">
+          <p className="text-sm text-indigo-100">Sign in to continue</p>
+          <LoginButton />
+        </div>
       </div>
     );
   }
