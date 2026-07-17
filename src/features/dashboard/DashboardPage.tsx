@@ -115,7 +115,7 @@ export function DashboardPage() {
     .filter((m) => completedIdsSet.has(m.id));
 
   return (
-    <div className="mx-auto max-w-5xl space-y-6">
+    <div className="mx-auto max-w-7xl space-y-6">
       <div>
         <h2 className="text-2xl font-bold text-slate-100">Your Dashboard</h2>
         <p className="mt-1 text-slate-400">{careerPath?.title}</p>

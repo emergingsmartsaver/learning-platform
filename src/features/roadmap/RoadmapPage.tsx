@@ -83,7 +83,7 @@ export function RoadmapPage() {
   const completedIds = new Set(progress?.completedMilestoneIds ?? []);
 
   return (
-    <div className="mx-auto max-w-5xl">
+    <div className="mx-auto max-w-7xl">
       <h2 className="text-2xl font-bold text-slate-100">{careerPath?.title}</h2>
       <p className="mt-1 text-slate-400">{careerPath?.description}</p>
 
@@ -120,7 +120,7 @@ export function RoadmapPage() {
             </div>
             <p className="ml-8 text-sm text-slate-400">{stage.description}</p>
 
-            <ol className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2">
+            <ol className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-3">
               {stage.milestones.map((milestone) => {
                 const isComplete = completedIds.has(milestone.id);
                 return (
