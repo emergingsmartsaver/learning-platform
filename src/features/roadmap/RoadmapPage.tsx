@@ -73,7 +73,7 @@ export function RoadmapPage() {
   );
 
   if (loading) {
-    return <p className="text-slate-500">Loading roadmap…</p>;
+    return <p className="text-slate-400">Loading roadmap…</p>;
   }
 
   if (error) {
@@ -84,16 +84,16 @@ export function RoadmapPage() {
 
   return (
     <div className="mx-auto max-w-5xl">
-      <h2 className="text-2xl font-bold text-slate-900">{careerPath?.title}</h2>
-      <p className="mt-1 text-slate-600">{careerPath?.description}</p>
+      <h2 className="text-2xl font-bold text-slate-100">{careerPath?.title}</h2>
+      <p className="mt-1 text-slate-400">{careerPath?.description}</p>
 
       {progress && (
         <div className="mt-4 max-w-2xl">
-          <div className="flex items-center justify-between text-sm text-slate-600">
+          <div className="flex items-center justify-between text-sm text-slate-400">
             <span>Progress</span>
             <span>{progress.percentComplete}%</span>
           </div>
-          <div className="mt-1 h-2 w-full overflow-hidden rounded-full bg-slate-200">
+          <div className="mt-1 h-2 w-full overflow-hidden rounded-full bg-slate-800">
             <div
               className="h-full bg-gradient-to-r from-indigo-500 to-cyan-500 transition-all"
               style={{ width: `${progress.percentComplete}%` }}
@@ -103,10 +103,15 @@ export function RoadmapPage() {
       )}
 
       <div className="mt-8 space-y-8">
-        {stages.map((stage) => (
+        {stages.map((stage, stageIndex) => (
           <section key={stage.id}>
-            <h3 className="text-lg font-semibold text-slate-900">{stage.title}</h3>
-            <p className="text-sm text-slate-500">{stage.description}</p>
+            <div className="flex items-center gap-2">
+              <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-indigo-900/60 text-xs font-semibold text-indigo-300">
+                {stageIndex + 1}
+              </span>
+              <h3 className="text-lg font-semibold text-slate-100">{stage.title}</h3>
+            </div>
+            <p className="ml-8 text-sm text-slate-400">{stage.description}</p>
 
             <ol className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2">
               {stage.milestones.map((milestone) => {
@@ -115,21 +120,23 @@ export function RoadmapPage() {
                   <li key={milestone.id}>
                     <Link
                       to={`/roadmap/milestones/${milestone.id}`}
-                      className="flex h-full items-start gap-3 rounded-md border border-slate-200 bg-white px-4 py-3 hover:border-indigo-300 hover:shadow-sm"
+                      className={`flex h-full items-start gap-3 rounded-md border-l-4 border-y border-r border-slate-800 bg-slate-900 px-4 py-3 hover:shadow-sm ${
+                        isComplete ? 'border-l-green-500' : 'border-l-indigo-400 hover:border-l-indigo-600'
+                      }`}
                     >
                       <span
                         className={`mt-1 flex h-4 w-4 shrink-0 items-center justify-center rounded-full text-[10px] ${
-                          isComplete ? 'bg-green-500 text-white' : 'border border-slate-300'
+                          isComplete ? 'bg-green-500 text-white' : 'border border-slate-700'
                         }`}
                         aria-label={isComplete ? 'Completed' : 'Not completed'}
                       >
                         {isComplete ? '✓' : ''}
                       </span>
                       <span className="flex-1">
-                        <span className={`font-medium ${isComplete ? 'text-slate-400 line-through' : 'text-slate-900'}`}>
+                        <span className={`font-medium ${isComplete ? 'text-slate-400 line-through' : 'text-slate-100'}`}>
                           {milestone.title}
                         </span>
-                        <span className="block text-sm text-slate-500">{milestone.description}</span>
+                        <span className="block text-sm text-slate-400">{milestone.description}</span>
                         {!isComplete && (
                           <span className="mt-1 inline-block text-xs font-medium text-indigo-600">
                             Pass the quiz to complete →

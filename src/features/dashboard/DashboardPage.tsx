@@ -104,7 +104,7 @@ export function DashboardPage() {
     };
   }, [user]);
 
-  if (loading) return <p className="text-slate-500">Loading dashboard…</p>;
+  if (loading) return <p className="text-slate-400">Loading dashboard…</p>;
   if (error) return <p className="text-red-600">{error}</p>;
 
   const totalMilestoneCount = allStages.reduce((sum, s) => sum + s.milestones.length, 0);
@@ -117,120 +117,132 @@ export function DashboardPage() {
   return (
     <div className="mx-auto max-w-5xl space-y-6">
       <div>
-        <h2 className="text-2xl font-bold text-slate-900">Your Dashboard</h2>
-        <p className="mt-1 text-slate-600">{careerPath?.title}</p>
+        <h2 className="text-2xl font-bold text-slate-100">Your Dashboard</h2>
+        <p className="mt-1 text-slate-400">{careerPath?.title}</p>
       </div>
 
-      <div className="rounded-lg border border-slate-200 bg-white p-5">
-        <div className="flex items-center justify-between text-sm text-slate-600">
-          <span>Overall progress</span>
-          <span>{progress?.percentComplete ?? 0}%</span>
+      {/* Hero: progress + current focus merged into one clear "what's next" moment */}
+      <div className="overflow-hidden rounded-xl border border-slate-800 bg-slate-900 shadow-sm">
+        <div className="p-5">
+          <div className="flex items-center justify-between text-sm text-slate-400">
+            <span>Overall progress</span>
+            <span>{progress?.percentComplete ?? 0}%</span>
+          </div>
+
+          <div className="relative mt-2 h-3 w-full overflow-hidden rounded-full bg-slate-800">
+            <div
+              className="h-full bg-gradient-to-r from-indigo-500 to-cyan-500 transition-all"
+              style={{ width: `${progress?.percentComplete ?? 0}%` }}
+            />
+            {totalMilestoneCount > 1 &&
+              Array.from({ length: totalMilestoneCount - 1 }, (_, i) => i + 1).map((i) => (
+                <div
+                  key={i}
+                  className="absolute top-0 h-full w-px bg-slate-900/70"
+                  style={{ left: `${(i / totalMilestoneCount) * 100}%` }}
+                />
+              ))}
+          </div>
+
+          <p className="mt-2 text-xs text-slate-400">
+            {completedCount} of {totalMilestoneCount} milestone{totalMilestoneCount === 1 ? '' : 's'} completed
+          </p>
         </div>
 
-        <div className="relative mt-2 h-3 w-full overflow-hidden rounded-full bg-slate-200">
-          <div
-            className="h-full bg-gradient-to-r from-indigo-500 to-cyan-500 transition-all"
-            style={{ width: `${progress?.percentComplete ?? 0}%` }}
-          />
-          {/* Tick marks dividing the bar into one segment per milestone */}
-          {totalMilestoneCount > 1 &&
-            Array.from({ length: totalMilestoneCount - 1 }, (_, i) => i + 1).map((i) => (
-              <div
-                key={i}
-                className="absolute top-0 h-full w-px bg-white/70"
-                style={{ left: `${(i / totalMilestoneCount) * 100}%` }}
-              />
-            ))}
-        </div>
-
-        <p className="mt-2 text-xs text-slate-500">
-          {completedCount} of {totalMilestoneCount} milestone{totalMilestoneCount === 1 ? '' : 's'} completed
-        </p>
-      </div>
-
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-        <div className="space-y-6">
-          <div className="rounded-lg border border-slate-200 bg-white p-5">
-            <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500">Current Focus</h3>
-            {currentStage && currentMilestone ? (
-              <Link
-                to={`/roadmap/milestones/${currentMilestone.id}`}
-                className="mt-2 block rounded-md border border-slate-200 px-4 py-3 hover:border-indigo-300"
-              >
-                <p className="text-xs text-slate-500">{currentStage.title}</p>
-                <p className="font-medium text-slate-900">{currentMilestone.title}</p>
-              </Link>
-            ) : (
-              <p className="mt-2 text-sm text-slate-500">
-                {progress && progress.percentComplete === 100
-                  ? '🎉 All milestones complete!'
-                  : 'No active milestone yet.'}
+        {currentStage && currentMilestone ? (
+          <Link
+            to={`/roadmap/milestones/${currentMilestone.id}`}
+            className="flex flex-col gap-3 border-t border-indigo-900/50 bg-gradient-to-r from-indigo-950 to-cyan-950 p-5 hover:from-indigo-900 hover:to-cyan-900 sm:flex-row sm:items-center sm:justify-between"
+          >
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-wide text-indigo-300">
+                {currentStage.title} · Continue where you left off
               </p>
-            )}
+              <p className="mt-0.5 text-lg font-bold text-slate-100">{currentMilestone.title}</p>
+            </div>
+            <span className="shrink-0 rounded-md bg-indigo-600 px-4 py-2 text-center text-sm font-medium text-white">
+              Continue →
+            </span>
+          </Link>
+        ) : (
+          <div className="border-t border-emerald-900/50 bg-emerald-950/50 p-5 text-center">
+            <p className="font-medium text-emerald-300">
+              {progress && progress.percentComplete === 100
+                ? '🎉 All milestones complete!'
+                : 'No active milestone yet.'}
+            </p>
           </div>
+        )}
+      </div>
 
-          <div className="rounded-lg border border-slate-200 bg-white p-5">
-            <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
-              Badges Earned {earnedBadges.length > 0 && `(${earnedBadges.length})`}
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+        <div className="rounded-lg border border-slate-800 bg-slate-900 p-5">
+          <div className="flex items-center gap-2">
+            <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-amber-900/60 text-sm">🏆</span>
+            <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-400">
+              Badges {earnedBadges.length > 0 && `(${earnedBadges.length})`}
             </h3>
-            {earnedBadges.length === 0 ? (
-              <p className="mt-2 text-sm text-slate-500">Pass your first quiz to earn a badge.</p>
-            ) : (
-              <div className="mt-3 flex flex-wrap gap-2">
-                {earnedBadges.map((m) => (
-                  <Link key={m.id} to={`/roadmap/milestones/${m.id}`}>
-                    <Badge title={m.title} />
-                  </Link>
-                ))}
-              </div>
-            )}
           </div>
+          {earnedBadges.length === 0 ? (
+            <p className="mt-3 text-sm text-slate-400">Pass your first quiz to earn a badge.</p>
+          ) : (
+            <div className="mt-3 flex flex-wrap gap-2">
+              {earnedBadges.map((m) => (
+                <Link key={m.id} to={`/roadmap/milestones/${m.id}`}>
+                  <Badge title={m.title} />
+                </Link>
+              ))}
+            </div>
+          )}
         </div>
 
-        <div className="space-y-6">
-          <div className="rounded-lg border border-slate-200 bg-white p-5">
-            <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500">Recent Quiz Activity</h3>
-            {recentAttempts.length === 0 ? (
-              <p className="mt-2 text-sm text-slate-500">No quiz attempts yet — take a quiz from the roadmap.</p>
-            ) : (
-              <ul className="mt-2 divide-y divide-slate-100">
-                {recentAttempts.map((attempt) => (
-                  <li key={attempt.id} className="flex items-center justify-between py-2 text-sm">
-                    <span className="text-slate-700">
-                      {attemptMilestoneTitles[attempt.milestoneId] ?? attempt.milestoneId}
-                    </span>
-                    <span
-                      className={`rounded-full px-2 py-0.5 text-xs font-medium ${
-                        attempt.passed ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
-                      }`}
-                    >
-                      {attempt.score}% {attempt.passed ? '· Passed' : '· Failed'}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            )}
+        <div className="rounded-lg border border-slate-800 bg-slate-900 p-5">
+          <div className="flex items-center gap-2">
+            <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-indigo-900/60 text-sm">📝</span>
+            <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-400">Recent Quizzes</h3>
           </div>
+          {recentAttempts.length === 0 ? (
+            <p className="mt-3 text-sm text-slate-400">No quiz attempts yet — take a quiz from the roadmap.</p>
+          ) : (
+            <ul className="mt-2 divide-y divide-slate-800">
+              {recentAttempts.map((attempt) => (
+                <li key={attempt.id} className="flex items-center justify-between py-2 text-sm">
+                  <span className="text-slate-300">
+                    {attemptMilestoneTitles[attempt.milestoneId] ?? attempt.milestoneId}
+                  </span>
+                  <span
+                    className={`rounded-full px-2 py-0.5 text-xs font-medium ${
+                      attempt.passed ? 'bg-emerald-900/50 text-emerald-300' : 'bg-red-900/50 text-red-300'
+                    }`}
+                  >
+                    {attempt.score}% {attempt.passed ? '· Passed' : '· Failed'}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
 
-          <div className="rounded-lg border border-slate-200 bg-white p-5">
-            <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500">Project Status</h3>
-            {projectProgress.length === 0 ? (
-              <p className="mt-2 text-sm text-slate-500">No projects started yet — find one on the roadmap.</p>
-            ) : (
-              <div className="mt-2 flex gap-4 text-sm">
-                {(['not_started', 'in_progress', 'submitted', 'completed'] as const).map((status) => {
-                  const count = projectProgress.filter((p) => p.status === status).length;
-                  if (count === 0) return null;
-                  return (
-                    <span key={status} className="text-slate-600">
-                      <span className="font-semibold text-slate-900">{count}</span>{' '}
-                      {status.replace('_', ' ')}
-                    </span>
-                  );
-                })}
-              </div>
-            )}
+        <div className="rounded-lg border border-slate-800 bg-slate-900 p-5">
+          <div className="flex items-center gap-2">
+            <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-violet-900/60 text-sm">🚀</span>
+            <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-400">Projects</h3>
           </div>
+          {projectProgress.length === 0 ? (
+            <p className="mt-3 text-sm text-slate-400">No projects started yet — find one on the roadmap.</p>
+          ) : (
+            <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-sm">
+              {(['not_started', 'in_progress', 'submitted', 'completed'] as const).map((status) => {
+                const count = projectProgress.filter((p) => p.status === status).length;
+                if (count === 0) return null;
+                return (
+                  <span key={status} className="text-slate-400">
+                    <span className="font-semibold text-slate-100">{count}</span> {status.replace('_', ' ')}
+                  </span>
+                );
+              })}
+            </div>
+          )}
         </div>
       </div>
 

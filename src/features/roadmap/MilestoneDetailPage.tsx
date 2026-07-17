@@ -101,31 +101,31 @@ export function MilestoneDetailPage() {
     celebrateMilestoneComplete();
   }
 
-  if (loading) return <p className="text-slate-500">Loading…</p>;
+  if (loading) return <p className="text-slate-400">Loading…</p>;
   if (!milestone) return <p className="text-red-600">Milestone not found.</p>;
 
   return (
     <div className="mx-auto max-w-3xl">
-      <Link to="/roadmap" className="text-sm text-slate-500 hover:underline">
+      <Link to="/roadmap" className="text-sm text-slate-400 hover:underline">
         ← Back to roadmap
       </Link>
 
       <div className="mt-2 flex items-center justify-between gap-2">
         <div>
-          <h2 className="text-2xl font-bold text-slate-900">{milestone.title}</h2>
-          <p className="mt-1 text-slate-600">{milestone.description}</p>
+          <h2 className="text-2xl font-bold text-slate-100">{milestone.title}</h2>
+          <p className="mt-1 text-slate-400">{milestone.description}</p>
         </div>
         {alreadyPassed && <Badge title="Milestone complete" size="lg" />}
       </div>
 
       <section className="mt-6">
-        <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500">Skills</h3>
+        <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-400">Skills</h3>
         <ul className="mt-2 space-y-2">
           {skills.map((skill) => (
-            <li key={skill.id} className="rounded-md border border-slate-200 bg-white px-4 py-3">
-              <p className="font-medium text-slate-900">{skill.title}</p>
+            <li key={skill.id} className="rounded-md border border-slate-800 bg-slate-900 px-4 py-3">
+              <p className="font-medium text-slate-100">{skill.title}</p>
               {skill.description && (
-                <p className="mt-0.5 text-sm text-slate-600">{skill.description}</p>
+                <p className="mt-0.5 text-sm text-slate-400">{skill.description}</p>
               )}
               {skill.resources && skill.resources.length > 0 && (
                 <div className="mt-2 flex flex-wrap gap-3">
@@ -135,7 +135,7 @@ export function MilestoneDetailPage() {
                       href={r.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-xs font-medium text-blue-600 hover:underline"
+                      className="text-xs font-medium text-cyan-400 hover:text-cyan-300 hover:underline"
                     >
                       📖 {r.title} ↗
                     </a>
@@ -149,20 +149,20 @@ export function MilestoneDetailPage() {
 
       {quiz && user && (
         <section className="mt-6">
-          <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
+          <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-400">
             Quiz — pass to complete this milestone
           </h3>
-          <p className="mt-1 text-sm text-slate-500">
+          <p className="mt-1 text-sm text-slate-400">
             {quiz.questions.length} question{quiz.questions.length === 1 ? '' : 's'} · Passing score: {quiz.passingScorePct}%
           </p>
 
           {alreadyPassed ? (
-            <div className="mt-3 rounded-md border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-800">
+            <div className="mt-3 rounded-md border border-emerald-800 bg-emerald-950/50 px-4 py-3 text-sm text-emerald-300">
               ✓ You've already passed this quiz. Milestone is complete.
             </div>
           ) : !quizStarted ? (
-            <div className="mt-3 rounded-md border border-slate-200 bg-white px-4 py-4">
-              <p className="text-sm text-slate-600">
+            <div className="mt-3 rounded-md border border-slate-800 bg-slate-900 px-4 py-4">
+              <p className="text-sm text-slate-400">
                 Review the skills above before starting — questions won't be shown until you're ready.
               </p>
               <button
@@ -191,7 +191,7 @@ export function MilestoneDetailPage() {
 
       {projects.length > 0 && user && (
         <section className="mt-6">
-          <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500">Projects</h3>
+          <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-400">Projects</h3>
           <ul className="mt-2 space-y-3">
             {projects.map((project) => (
               <ProjectCard key={project.id} project={project} uid={user.uid} />
@@ -201,8 +201,8 @@ export function MilestoneDetailPage() {
       )}
 
       {alreadyPassed && (
-        <section className="mt-6 rounded-md border border-slate-200 bg-white p-4">
-          <p className="text-sm font-medium text-slate-900">🎉 Milestone complete — where next?</p>
+        <section className="mt-6 rounded-md border border-slate-800 bg-slate-900 p-4">
+          <p className="text-sm font-medium text-slate-100">🎉 Milestone complete — where next?</p>
           <div className="mt-3 flex flex-wrap gap-3">
             {nextMilestone ? (
               <Link
@@ -212,19 +212,19 @@ export function MilestoneDetailPage() {
                 Next: {nextMilestone.title} →
               </Link>
             ) : (
-              <span className="rounded-md bg-green-100 px-4 py-2 text-sm font-medium text-green-800">
+              <span className="rounded-md bg-emerald-900/50 px-4 py-2 text-sm font-medium text-emerald-300">
                 🏁 All milestones complete!
               </span>
             )}
             <Link
               to="/dashboard"
-              className="rounded-md border border-slate-300 px-4 py-2 text-sm text-slate-700 hover:bg-slate-50"
+              className="rounded-md border border-slate-700 px-4 py-2 text-sm text-slate-300 hover:bg-slate-800"
             >
               View Dashboard
             </Link>
             <Link
               to="/roadmap"
-              className="rounded-md border border-slate-300 px-4 py-2 text-sm text-slate-700 hover:bg-slate-50"
+              className="rounded-md border border-slate-700 px-4 py-2 text-sm text-slate-300 hover:bg-slate-800"
             >
               Back to Roadmap
             </Link>

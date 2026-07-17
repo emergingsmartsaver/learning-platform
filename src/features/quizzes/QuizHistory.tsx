@@ -34,9 +34,9 @@ export function QuizHistory({ uid, quizId, refreshKey }: QuizHistoryProps) {
       <p className="text-xs font-medium uppercase tracking-wide text-slate-400">Attempt history</p>
       <ul className="mt-1 space-y-1">
         {attempts.map((attempt) => (
-          <li key={attempt.id} className="flex items-center justify-between text-xs text-slate-500">
+          <li key={attempt.id} className="flex items-center justify-between text-xs text-slate-400">
             <span>{new Date(attempt.attemptedAt).toLocaleString()}</span>
-            <span className={attempt.passed ? 'text-green-700' : 'text-red-700'}>
+            <span className={attempt.passed ? 'text-emerald-400' : 'text-red-400'}>
               {attempt.score}% {attempt.passed ? '· Passed' : '· Failed'}
             </span>
           </li>

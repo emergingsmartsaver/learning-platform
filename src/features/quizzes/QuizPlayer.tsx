@@ -63,7 +63,7 @@ export function QuizPlayer({ quiz, uid, milestoneId, careerPathId, alreadyPassed
 
   if (alreadyPassed) {
     return (
-      <div className="rounded-md border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-800">
+      <div className="rounded-md border border-emerald-800 bg-emerald-950/50 px-4 py-3 text-sm text-emerald-300">
         ✓ You've already passed this quiz. Milestone is complete.
       </div>
     );
@@ -73,7 +73,7 @@ export function QuizPlayer({ quiz, uid, milestoneId, careerPathId, alreadyPassed
     <div className="space-y-6">
       {quiz.questions.map((question, i) => (
         <div key={question.id}>
-          <p className="font-medium text-slate-900">
+          <p className="font-medium text-slate-100">
             {i + 1}. {question.prompt}
             {question.type === 'multi' && (
               <span className="ml-2 text-xs font-normal text-slate-400">(select all that apply)</span>
@@ -83,7 +83,7 @@ export function QuizPlayer({ quiz, uid, milestoneId, careerPathId, alreadyPassed
           {question.type === 'single' && (
             <div className="mt-2 space-y-1">
               {(question.options ?? []).map((option) => (
-                <label key={option} className="flex items-center gap-2 text-sm text-slate-700">
+                <label key={option} className="flex items-center gap-2 text-sm text-slate-300">
                   <input
                     type="radio"
                     name={question.id}
@@ -103,7 +103,7 @@ export function QuizPlayer({ quiz, uid, milestoneId, careerPathId, alreadyPassed
               {(question.options ?? []).map((option) => {
                 const selected = Array.isArray(answers[question.id]) && (answers[question.id] as string[]).includes(option);
                 return (
-                  <label key={option} className="flex items-center gap-2 text-sm text-slate-700">
+                  <label key={option} className="flex items-center gap-2 text-sm text-slate-300">
                     <input
                       type="checkbox"
                       checked={selected}
@@ -123,7 +123,7 @@ export function QuizPlayer({ quiz, uid, milestoneId, careerPathId, alreadyPassed
               value={typeof answers[question.id] === 'string' ? (answers[question.id] as string) : ''}
               onChange={(e) => setTextAnswer(question.id, e.target.value)}
               placeholder="Type your answer…"
-              className="mt-2 w-full rounded-md border border-slate-300 px-3 py-1.5 text-sm"
+              className="mt-2 w-full rounded-md border border-slate-700 bg-slate-800 px-3 py-1.5 text-sm text-slate-100 placeholder:text-slate-500"
             />
           )}
         </div>
@@ -141,8 +141,8 @@ export function QuizPlayer({ quiz, uid, milestoneId, careerPathId, alreadyPassed
         <div
           className={`rounded-md px-4 py-3 text-sm ${
             result.passed
-              ? 'border border-green-200 bg-green-50 text-green-800'
-              : 'border border-red-200 bg-red-50 text-red-800'
+              ? 'border border-emerald-800 bg-emerald-950/50 text-emerald-300'
+              : 'border border-red-800 bg-red-950/50 text-red-300'
           }`}
         >
           {result.passed
