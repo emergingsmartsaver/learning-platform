@@ -107,7 +107,7 @@ export function ProjectCard({ project, uid }: ProjectCardProps) {
   }
 
   return (
-    <li className="rounded-md border border-slate-800 p-4">
+    <li className="rounded-md border border-slate-800 bg-slate-900 p-4">
       <div className="flex items-start justify-between gap-3">
         <p className="font-medium text-slate-100">{project.title}</p>
         {!loading && (
@@ -142,9 +142,10 @@ export function ProjectCard({ project, uid }: ProjectCardProps) {
 
       {project.requiresGithubLink && (
         <div className="mt-3">
-          <label className="text-xs font-semibold uppercase tracking-wide text-slate-400">GitHub link</label>
-          <div className="mt-1 flex gap-2">
+          <label htmlFor={`github-link-${project.id}`} className="text-xs font-semibold uppercase tracking-wide text-slate-400">GitHub link</label>
+          <div className="mt-1 flex flex-col gap-2 sm:flex-row">
             <input
+              id={`github-link-${project.id}`}
               type="url"
               value={githubLink}
               onChange={(e) => {
@@ -157,7 +158,7 @@ export function ProjectCard({ project, uid }: ProjectCardProps) {
             <button
               onClick={handleSaveLink}
               disabled={saving}
-              className="rounded-md border border-slate-700 px-3 py-1.5 text-sm text-slate-300 hover:bg-slate-800 disabled:opacity-50"
+              className="rounded-md border border-slate-700 px-3 py-1.5 text-sm text-slate-300 hover:bg-slate-800 disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
             >
               Save
             </button>
@@ -166,18 +167,18 @@ export function ProjectCard({ project, uid }: ProjectCardProps) {
           <button
             onClick={handleVerify}
             disabled={verifying}
-            className="mt-2 rounded-md border border-slate-700 px-3 py-1.5 text-sm text-slate-300 hover:bg-slate-800 disabled:opacity-50"
+            className="mt-2 rounded-md border border-slate-700 px-3 py-1.5 text-sm text-slate-300 hover:bg-slate-800 disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
           >
             {verifying ? 'Checking GitHub…' : 'Verify on GitHub'}
           </button>
-          {verifyError && <p className="mt-1 text-xs text-red-600">{verifyError}</p>}
+          {verifyError && <p className="mt-1 text-xs text-red-400">{verifyError}</p>}
 
           {verification && (
             <div className="mt-2 rounded-md border border-slate-800 bg-slate-950 p-3">
               <ul className="space-y-1">
                 {verification.checks.map((check) => (
                   <li key={check.label} className="flex items-center gap-2 text-xs">
-                    <span className={check.passed ? 'text-green-600' : 'text-red-600'}>
+                    <span className={check.passed ? 'text-emerald-400' : 'text-red-400'}>
                       {check.passed ? '✓' : '✗'}
                     </span>
                     <span className="text-slate-400">{check.label}</span>
@@ -194,12 +195,13 @@ export function ProjectCard({ project, uid }: ProjectCardProps) {
       )}
 
       <div className="mt-4">
-        <label className="text-xs font-semibold uppercase tracking-wide text-slate-400">Status</label>
+        <label htmlFor={`status-${project.id}`} className="text-xs font-semibold uppercase tracking-wide text-slate-400">Status</label>
         <select
+          id={`status-${project.id}`}
           value={status}
           onChange={(e) => handleStatusChange(e.target.value as ProjectStatus)}
           disabled={saving}
-          className="mt-1 block rounded-md border border-slate-700 bg-slate-800 px-3 py-1.5 text-sm text-slate-100 disabled:opacity-50"
+          className="mt-1 block rounded-md border border-slate-700 bg-slate-800 px-3 py-1.5 text-sm text-slate-100 disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
         >
           {ALL_STATUSES.map((s) => (
             <option key={s} value={s}>
@@ -207,7 +209,7 @@ export function ProjectCard({ project, uid }: ProjectCardProps) {
             </option>
           ))}
         </select>
-        {statusError && <p className="mt-1 text-xs text-red-600">{statusError}</p>}
+        {statusError && <p className="mt-1 text-xs text-red-400">{statusError}</p>}
       </div>
     </li>
   );

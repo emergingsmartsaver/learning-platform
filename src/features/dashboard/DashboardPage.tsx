@@ -105,7 +105,7 @@ export function DashboardPage() {
   }, [user]);
 
   if (loading) return <p className="text-slate-400">Loading dashboard…</p>;
-  if (error) return <p className="text-red-600">{error}</p>;
+  if (error) return <p className="text-red-400">{error}</p>;
 
   const totalMilestoneCount = allStages.reduce((sum, s) => sum + s.milestones.length, 0);
   const completedCount = progress?.completedMilestoneIds.length ?? 0;
@@ -129,7 +129,14 @@ export function DashboardPage() {
             <span>{progress?.percentComplete ?? 0}%</span>
           </div>
 
-          <div className="relative mt-2 h-3 w-full overflow-hidden rounded-full bg-slate-800">
+          <div
+            role="progressbar"
+            aria-valuenow={progress?.percentComplete ?? 0}
+            aria-valuemin={0}
+            aria-valuemax={100}
+            aria-label="Overall course progress"
+            className="relative mt-2 h-3 w-full overflow-hidden rounded-full bg-slate-800"
+          >
             <div
               className="h-full bg-gradient-to-r from-indigo-500 to-cyan-500 transition-all"
               style={{ width: `${progress?.percentComplete ?? 0}%` }}
@@ -152,7 +159,7 @@ export function DashboardPage() {
         {currentStage && currentMilestone ? (
           <Link
             to={`/roadmap/milestones/${currentMilestone.id}`}
-            className="flex flex-col gap-3 border-t border-indigo-900/50 bg-gradient-to-r from-indigo-950 to-cyan-950 p-5 hover:from-indigo-900 hover:to-cyan-900 sm:flex-row sm:items-center sm:justify-between"
+            className="flex flex-col gap-3 border-t border-indigo-900/50 bg-gradient-to-r from-indigo-950 to-cyan-950 p-5 hover:from-indigo-900 hover:to-cyan-900 sm:flex-row sm:items-center sm:justify-between focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
           >
             <div>
               <p className="text-xs font-semibold uppercase tracking-wide text-indigo-300">
@@ -160,7 +167,7 @@ export function DashboardPage() {
               </p>
               <p className="mt-0.5 text-lg font-bold text-slate-100">{currentMilestone.title}</p>
             </div>
-            <span className="shrink-0 rounded-md bg-indigo-600 px-4 py-2 text-center text-sm font-medium text-white">
+            <span className="w-full shrink-0 rounded-md bg-indigo-600 px-4 py-2 text-center text-sm font-medium text-white sm:w-auto">
               Continue →
             </span>
           </Link>
@@ -178,7 +185,7 @@ export function DashboardPage() {
       <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
         <div className="rounded-lg border border-slate-800 bg-slate-900 p-5">
           <div className="flex items-center gap-2">
-            <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-amber-900/60 text-sm">🏆</span>
+            <span aria-hidden="true" className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-amber-900/60 text-sm">🏆</span>
             <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-400">
               Badges {earnedBadges.length > 0 && `(${earnedBadges.length})`}
             </h3>
@@ -188,7 +195,7 @@ export function DashboardPage() {
           ) : (
             <div className="mt-3 flex flex-wrap gap-2">
               {earnedBadges.map((m) => (
-                <Link key={m.id} to={`/roadmap/milestones/${m.id}`}>
+                <Link key={m.id} to={`/roadmap/milestones/${m.id}`} className="rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950">
                   <Badge title={m.title} />
                 </Link>
               ))}
@@ -198,7 +205,7 @@ export function DashboardPage() {
 
         <div className="rounded-lg border border-slate-800 bg-slate-900 p-5">
           <div className="flex items-center gap-2">
-            <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-indigo-900/60 text-sm">📝</span>
+            <span aria-hidden="true" className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-indigo-900/60 text-sm">📝</span>
             <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-400">Recent Quizzes</h3>
           </div>
           {recentAttempts.length === 0 ? (
@@ -225,7 +232,7 @@ export function DashboardPage() {
 
         <div className="rounded-lg border border-slate-800 bg-slate-900 p-5">
           <div className="flex items-center gap-2">
-            <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-violet-900/60 text-sm">🚀</span>
+            <span aria-hidden="true" className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-violet-900/60 text-sm">🚀</span>
             <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-400">Projects</h3>
           </div>
           {projectProgress.length === 0 ? (
@@ -246,7 +253,7 @@ export function DashboardPage() {
         </div>
       </div>
 
-      <Link to="/roadmap" className="inline-block text-sm font-medium text-indigo-600 hover:underline">
+      <Link to="/roadmap" className="inline-block rounded text-sm font-medium text-indigo-400 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950">
         View full roadmap →
       </Link>
     </div>

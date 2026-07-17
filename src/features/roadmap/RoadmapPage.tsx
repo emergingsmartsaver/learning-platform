@@ -77,7 +77,7 @@ export function RoadmapPage() {
   }
 
   if (error) {
-    return <p className="text-red-600">{error}</p>;
+    return <p className="text-red-400">{error}</p>;
   }
 
   const completedIds = new Set(progress?.completedMilestoneIds ?? []);
@@ -93,7 +93,14 @@ export function RoadmapPage() {
             <span>Progress</span>
             <span>{progress.percentComplete}%</span>
           </div>
-          <div className="mt-1 h-2 w-full overflow-hidden rounded-full bg-slate-800">
+          <div
+            role="progressbar"
+            aria-valuenow={progress.percentComplete}
+            aria-valuemin={0}
+            aria-valuemax={100}
+            aria-label="Overall course progress"
+            className="mt-1 h-2 w-full overflow-hidden rounded-full bg-slate-800"
+          >
             <div
               className="h-full bg-gradient-to-r from-indigo-500 to-cyan-500 transition-all"
               style={{ width: `${progress.percentComplete}%` }}
@@ -120,7 +127,7 @@ export function RoadmapPage() {
                   <li key={milestone.id}>
                     <Link
                       to={`/roadmap/milestones/${milestone.id}`}
-                      className={`flex h-full items-start gap-3 rounded-md border-l-4 border-y border-r border-slate-800 bg-slate-900 px-4 py-3 hover:shadow-sm ${
+                      className={`flex h-full items-start gap-3 rounded-md border-l-4 border-y border-r border-slate-800 bg-slate-900 px-4 py-3 hover:shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 ${
                         isComplete ? 'border-l-green-500' : 'border-l-indigo-400 hover:border-l-indigo-600'
                       }`}
                     >
@@ -138,7 +145,7 @@ export function RoadmapPage() {
                         </span>
                         <span className="block text-sm text-slate-400">{milestone.description}</span>
                         {!isComplete && (
-                          <span className="mt-1 inline-block text-xs font-medium text-indigo-600">
+                          <span className="mt-1 inline-block text-xs font-medium text-indigo-400">
                             Pass the quiz to complete →
                           </span>
                         )}

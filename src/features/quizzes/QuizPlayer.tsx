@@ -60,6 +60,7 @@ export function QuizPlayer({ quiz, uid, milestoneId, careerPathId, alreadyPassed
   }
 
   const allAnswered = quiz.questions.every((q) => isAnswered(q.id, q.type));
+  const inputAccent = 'h-4 w-4 accent-indigo-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950';
 
   if (alreadyPassed) {
     return (
@@ -73,58 +74,66 @@ export function QuizPlayer({ quiz, uid, milestoneId, careerPathId, alreadyPassed
     <div className="space-y-6">
       {quiz.questions.map((question, i) => (
         <div key={question.id}>
-          <p className="font-medium text-slate-100">
-            {i + 1}. {question.prompt}
-            {question.type === 'multi' && (
-              <span className="ml-2 text-xs font-normal text-slate-400">(select all that apply)</span>
-            )}
-          </p>
+          {question.type === 'text' ? (
+            <>
+              <label htmlFor={question.id} className="font-medium text-slate-100">
+                {i + 1}. {question.prompt}
+              </label>
+              <input
+                id={question.id}
+                type="text"
+                value={typeof answers[question.id] === 'string' ? (answers[question.id] as string) : ''}
+                onChange={(e) => setTextAnswer(question.id, e.target.value)}
+                placeholder="Type your answer…"
+                className="mt-2 w-full rounded-md border border-slate-700 bg-slate-800 px-3 py-1.5 text-sm text-slate-100 placeholder:text-slate-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+              />
+            </>
+          ) : (
+            <fieldset>
+              <legend className="font-medium text-slate-100">
+                {i + 1}. {question.prompt}
+                {question.type === 'multi' && (
+                  <span className="ml-2 text-xs font-normal text-slate-400">(select all that apply)</span>
+                )}
+              </legend>
 
-          {question.type === 'single' && (
-            <div className="mt-2 space-y-1">
-              {(question.options ?? []).map((option) => (
-                <label key={option} className="flex items-center gap-2 text-sm text-slate-300">
-                  <input
-                    type="radio"
-                    name={question.id}
-                    value={option}
-                    checked={answers[question.id] === option}
-                    onChange={(e) => setSingleAnswer(question.id, e.target.value)}
-                    className="h-4 w-4"
-                  />
-                  {option}
-                </label>
-              ))}
-            </div>
-          )}
+              {question.type === 'single' && (
+                <div className="mt-2 space-y-1">
+                  {(question.options ?? []).map((option) => (
+                    <label key={option} className="flex items-center gap-2 text-sm text-slate-300">
+                      <input
+                        type="radio"
+                        name={question.id}
+                        value={option}
+                        checked={answers[question.id] === option}
+                        onChange={(e) => setSingleAnswer(question.id, e.target.value)}
+                        className={inputAccent}
+                      />
+                      {option}
+                    </label>
+                  ))}
+                </div>
+              )}
 
-          {question.type === 'multi' && (
-            <div className="mt-2 space-y-1">
-              {(question.options ?? []).map((option) => {
-                const selected = Array.isArray(answers[question.id]) && (answers[question.id] as string[]).includes(option);
-                return (
-                  <label key={option} className="flex items-center gap-2 text-sm text-slate-300">
-                    <input
-                      type="checkbox"
-                      checked={selected}
-                      onChange={() => toggleMultiAnswer(question.id, option)}
-                      className="h-4 w-4"
-                    />
-                    {option}
-                  </label>
-                );
-              })}
-            </div>
-          )}
-
-          {question.type === 'text' && (
-            <input
-              type="text"
-              value={typeof answers[question.id] === 'string' ? (answers[question.id] as string) : ''}
-              onChange={(e) => setTextAnswer(question.id, e.target.value)}
-              placeholder="Type your answer…"
-              className="mt-2 w-full rounded-md border border-slate-700 bg-slate-800 px-3 py-1.5 text-sm text-slate-100 placeholder:text-slate-500"
-            />
+              {question.type === 'multi' && (
+                <div className="mt-2 space-y-1">
+                  {(question.options ?? []).map((option) => {
+                    const selected = Array.isArray(answers[question.id]) && (answers[question.id] as string[]).includes(option);
+                    return (
+                      <label key={option} className="flex items-center gap-2 text-sm text-slate-300">
+                        <input
+                          type="checkbox"
+                          checked={selected}
+                          onChange={() => toggleMultiAnswer(question.id, option)}
+                          className={inputAccent}
+                        />
+                        {option}
+                      </label>
+                    );
+                  })}
+                </div>
+              )}
+            </fieldset>
           )}
         </div>
       ))}
@@ -132,13 +141,14 @@ export function QuizPlayer({ quiz, uid, milestoneId, careerPathId, alreadyPassed
       <button
         onClick={handleSubmit}
         disabled={!allAnswered || submitting}
-        className="rounded-md bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-50"
+        className="rounded-md bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
       >
         {submitting ? 'Submitting…' : 'Submit Quiz'}
       </button>
 
       {result && (
         <div
+          role="status"
           className={`rounded-md px-4 py-3 text-sm ${
             result.passed
               ? 'border border-emerald-800 bg-emerald-950/50 text-emerald-300'

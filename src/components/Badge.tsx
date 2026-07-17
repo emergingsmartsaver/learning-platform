@@ -14,6 +14,8 @@ export function Badge({ title, size = 'sm' }: BadgeProps) {
 
   return (
     <span
+      role="img"
+      aria-label={title ? `Badge earned: ${title}` : 'Badge earned'}
       title={title}
       className={`flex ${dimensions} shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-amber-300 to-amber-500 shadow-sm`}
     >

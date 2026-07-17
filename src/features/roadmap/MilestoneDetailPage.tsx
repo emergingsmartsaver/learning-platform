@@ -102,11 +102,11 @@ export function MilestoneDetailPage() {
   }
 
   if (loading) return <p className="text-slate-400">Loading…</p>;
-  if (!milestone) return <p className="text-red-600">Milestone not found.</p>;
+  if (!milestone) return <p className="text-red-400">Milestone not found.</p>;
 
   return (
     <div className="mx-auto max-w-3xl">
-      <Link to="/roadmap" className="text-sm text-slate-400 hover:underline">
+      <Link to="/roadmap" className="rounded text-sm text-slate-400 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950">
         ← Back to roadmap
       </Link>
 
@@ -135,7 +135,7 @@ export function MilestoneDetailPage() {
                       href={r.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-xs font-medium text-cyan-400 hover:text-cyan-300 hover:underline"
+                      className="rounded text-xs font-medium text-cyan-400 hover:text-cyan-300 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
                     >
                       📖 {r.title} ↗
                     </a>
@@ -167,7 +167,7 @@ export function MilestoneDetailPage() {
               </p>
               <button
                 onClick={() => setQuizStarted(true)}
-                className="mt-3 rounded-md bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700"
+                className="mt-3 rounded-md bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
               >
                 Start Quiz
               </button>
@@ -207,7 +207,7 @@ export function MilestoneDetailPage() {
             {nextMilestone ? (
               <Link
                 to={`/roadmap/milestones/${nextMilestone.id}`}
-                className="rounded-md bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700"
+                className="rounded-md bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
               >
                 Next: {nextMilestone.title} →
               </Link>
@@ -218,13 +218,13 @@ export function MilestoneDetailPage() {
             )}
             <Link
               to="/dashboard"
-              className="rounded-md border border-slate-700 px-4 py-2 text-sm text-slate-300 hover:bg-slate-800"
+              className="rounded-md border border-slate-700 px-4 py-2 text-sm text-slate-300 hover:bg-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
             >
               View Dashboard
             </Link>
             <Link
               to="/roadmap"
-              className="rounded-md border border-slate-700 px-4 py-2 text-sm text-slate-300 hover:bg-slate-800"
+              className="rounded-md border border-slate-700 px-4 py-2 text-sm text-slate-300 hover:bg-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
             >
               Back to Roadmap
             </Link>

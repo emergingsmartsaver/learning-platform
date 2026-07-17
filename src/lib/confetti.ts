@@ -7,6 +7,9 @@ import confetti from 'canvas-confetti';
  * onPassed callback, which only fires on an actual submit).
  */
 export function celebrateMilestoneComplete() {
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReducedMotion) return;
+
   const duration = 1200;
   const end = Date.now() + duration;
 
